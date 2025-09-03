@@ -1,8 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+$(if http-status == 302)Hotspot redirect$(endif) $(if http-header ==
+"Location")$(link-redirect)$(endif)
+<html>
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>...</title>
+        <meta http-equiv="refresh" content="0; url=$(link-redirect)" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="expires" content="-1" />
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="assets/favicon.webp"
+        />
         <title>MIKROTIKUI - Redirect</title>
     </head>
     <body></body>
