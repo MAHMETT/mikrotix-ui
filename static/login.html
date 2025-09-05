@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="MikrotixUI" />
+        <meta name="keywords" content="MikrotixUI" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <title>MikrotixUI Login</title>
+
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="assets/favicon.ico"
+        />
+        <link rel="stylesheet" href="src/css/modern.css" />
+        <link rel="stylesheet" href="src/css/global.css" />
+    </head>
+    <body class="min-h-screen flex items-center justify-center p-6">
+        <div id="app" class="glass-card p-8 w-full max-w-md fade-in shimmer">
+            <!-- Main Section -->
+            <main id="main-content" class="space-y-6 mb-8">
+                <!-- Chap -->
+                $(if chap-id)
+                <form name="sendin" action="$(link-login-only)" method="post">
+                    <input type="hidden" name="username" />
+                    <input type="hidden" name="password" />
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                </form>
+                <script type="text/javascript" src="src/js/md5.js"></script>
+                <script type="text/javascript">
+                    <!--
+                    function doLogin() {
+                        document.sendin.username.value =
+                            document.login.username.value;
+                        document.sendin.password.value = hexMD5(
+                            '$(chap-id)' +
+                                document.login.password.value +
+                                '$(chap-challenge)',
+                        );
+                        document.sendin.submit();
+                        return false;
+                    }
+                    //-->
+                </script>
+                $(endif)
+
+                <!-- Login Form -->
+                <form
+                    id="loginForm"
+                    role="form"
+                    action="$(link-login-only)"
+                    method="post"
+                >
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                    <div class="flex w-full flex-col gap-4">
+                        <div>
+                            <input
+                                id="inputUser"
+                                type="text"
+                                placeholder="Username or Email"
+                                class="glass-input w-full px-4 py-4 text-white placeholder-white/60 focus:ring-0 focus:outline-none"
+                                autofocus
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <input
+                                id="inputPassword"
+                                type="password"
+                                placeholder="Password"
+                                class="glass-input w-full px-4 py-4 text-white placeholder-white/60 focus:ring-0 focus:outline-none"
+                                required
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="glass-button w-full py-4 px-6 text-white font-semibold hover:shadow-xl"
+                        >
+                            Login
+                        </button>
+                        $(if error)
+                        <p class="text-sm text-red-500">
+                            Terjadi kesalahan: $(error)
+                        </p>
+                        $(endif)
+                    </div>
+                </form>
+            </main>
+        </div>
+
+        $(if chap-id)
+        <script type="text/javascript" src="src/js/md5.js"></script>
+        <script type="text/javascript">
+            $('#loginForm').submit(function () {
+                var password = $('#inputPassword');
+                password.val(
+                    hexMD5('$(chap-id)' + password.val() + '$(chap-challenge)'),
+                );
+            });
+        </script>
+        $(endif)
+
+        <script src="src/js/jquery/jquery.appear.js"></script>
+        <script src="src/js/jquery/jquery-3.2.1.min.js"></script>
+        <script src="src/js/jquery/jquery-migrate-3.0.0.min.js"></script>
+        <script src="src/js/global.js"></script>
+    </body>
+</html>

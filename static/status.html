@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="MikrotixUI" />
+        <meta name="keywords" content="MikrotixUI" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Status Page - MikrotixUI</title>
+
+        $(if refresh-timeout)
+        <meta http-equiv="refresh" content="$(refresh-timeout-secs)" />
+        $(endif)
+
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="assets/favicon.ico"
+        />
+        <link rel="stylesheet" href="src/css/modern.css" />
+        <link rel="stylesheet" href="src/css/global.css" />
+    </head>
+    <body class="min-h-screen flex items-center justify-center p-6">
+        <div id="app" class="glass-card p-8 w-full max-w-2xl fade-in shimmer">
+            <!-- Main Section -->
+            <main id="main-content" class="mb-8">
+                <!-- Status Table Card -->
+                <div class="glass-table-card mb-6">
+                    <table class="glass-table">
+                        <tbody>
+                            <tr>
+                                <td>Username</td>
+                                <td>$(username)</td>
+                            </tr>
+                            <tr>
+                                <td>IP Address</td>
+                                <td>$(ip)</td>
+                            </tr>
+                            <tr>
+                                <td>MAC Address</td>
+                                <td>$(mac)</td>
+                            </tr>
+                            $(if session-time-left)
+                            <tr>
+                                <td>Connected / left</td>
+                                <td>$(uptime) / $(session-time-left)</td>
+                            </tr>
+                            $(else)
+                            <tr>
+                                <td>Connected</td>
+                                <td>$(uptime)</td>
+                            </tr>
+                            $(endif)
+                            <tr>
+                                <td>Download / Upload</td>
+                                <td>$(bytes-out-nice) / $(bytes-in-nice)</td>
+                            </tr>
+                            $(if limit-bytes-total)
+                            <tr>
+                                <td>Sisa Kuota</td>
+                                <td>
+                                    $(if limit-bytes-total)
+                                    <script language="javascript">
+                                        result = (
+                                            $(limit - bytes - total) / 1000000
+                                        ).toFixed(2);
+                                        document.write(result);
+                                    </script>
+                                    MiB $(endif) $(if limit-bytes-total ==
+                                    '')Unlimited$(endif)
+                                </td>
+                            </tr>
+                            $(else)
+                            <tr>
+                                <td>Sisa Kuota</td>
+                                <td>
+                                    $(if limit-bytes-out)
+                                    <script language="javascript">
+                                        result = (
+                                            $(limit - bytes - out) / 1000000
+                                        ).toFixed(2);
+                                        document.write(result);
+                                    </script>
+                                    MiB $(endif) $(if limit-bytes-out ==
+                                    '')Unlimited$(endif)
+                                </td>
+                            </tr>
+                            $(endif) $(if refresh-timeout)
+                            <tr>
+                                <td>Status refresh</td>
+                                <td>$(refresh-timeout)</td>
+                            </tr>
+                            $(endif)
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-4">
+                    <button
+                        class="glass-button flex-1 py-4 px-6 text-white font-semibold hover:shadow-xl"
+                        onclick="logout()"
+                    >
+                        Logout
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <script src="src/js/global.js"></script>
+        <script>
+            function logout() {
+                if (confirm('Kamu yakin ingin logout?')) {
+                    window.location.href = 'logout.html?erase-cookie=true';
+                }
+            }
+        </script>
+
+        $(if chap-id)
+        <script type="text/javascript" src="src/js/md5.js"></script>
+        <script type="text/javascript">
+            $('#loginForm').submit(function () {
+                var password = $('#inputPassword');
+                password.val(
+                    hexMD5('$(chap-id)' + password.val() + '$(chap-challenge)'),
+                );
+            });
+        </script>
+        $(endif)
+        <script>
+            $('#menu-toggle').click(function (e) {
+                e.preventDefault();
+                $('#wrapper').toggleClass('toggled');
+            });
+        </script>
+        <script type="text/javascript">
+            <!--
+            document.login.username.focus();
+            //-->
+        </script>
+    </body>
+</html>

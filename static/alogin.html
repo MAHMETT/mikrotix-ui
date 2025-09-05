@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta http-equiv="refresh" content="5; url=$(link-redirect)" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="expires" content="-1" />
+
+        <title>Login Berhasil - MikrotixUI</title>
+
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="assets/favicon.ico"
+        />
+        <link rel="stylesheet" href="src/css/modern.css" />
+        <link rel="stylesheet" href="src/css/global.css" />
+    </head>
+    <body class="min-h-screen flex items-center justify-center p-6">
+        <div id="app" class="glass-card p-8 w-full max-w-md fade-in shimmer">
+            <!-- Main Section -->
+            <main id="main-content" class="text-center mb-8">
+                <!-- Success Checkmark -->
+                <div class="success-checkmark">✓</div>
+
+                <!-- Success Message -->
+                <h2 class="text-xl font-semibold text-white mb-2">
+                    Login Berhasil!
+                </h2>
+
+                <!-- Redirect Button -->
+                <div class="redirect-button-container">
+                    <button
+                        id="redirectBtn"
+                        class="glass-button py-4 px-8 text-white font-semibold hover:shadow-xl"
+                        onclick="redirectToDashboard()"
+                    >
+                        Redirect Manually
+                    </button>
+                    <div class="countdown">
+                        Otomatis redirect dalam
+                        <span id="countdown">5</span>
+                        detik
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="src/js/jquery/jquery.appear.js"></script>
+        <script src="src/js/jquery/jquery-3.2.1.min.js"></script>
+        <script src="src/js/jquery/jquery-migrate-3.0.0.min.js"></script>
+        <script src="src/js/successLogin.js"></script>
+        <script src="src/js/global.js"></script>
+    </body>
+</html>

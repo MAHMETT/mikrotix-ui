@@ -1,0 +1,146 @@
+$(if http-status == 302)Hotspot redirect$(endif) $(if http-header ==
+"Location")$(link-redirect)$(endif)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta http-equiv="refresh" content="3; url=$(link-redirect)" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="expires" content="-1" />
+
+        <title>Redirecting - MikrotixUI</title>
+
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="assets/favicon.ico"
+        />
+        <link rel="stylesheet" href="src/css/global.css" />
+        <link rel="stylesheet" href="src/css/modern.css" />
+    </head>
+    <body class="min-h-screen flex items-center justify-center p-6">
+        <div id="app" class="glass-card p-8 w-full max-w-md fade-in shimmer">
+            <!-- Main Section -->
+            <main id="main-content" class="text-center mb-8">
+                <div class="loading-container">
+                    <!-- Glass Spinner -->
+                    <div class="glass-spinner"></div>
+
+                    <!-- Loading Dots -->
+                    <div class="loading-dots">
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                    </div>
+
+                    <!-- Status Text -->
+                    <div class="redirect-status" id="statusText">
+                        Preparing redirect...
+                    </div>
+
+                    <!-- Countdown -->
+                    <div class="countdown-text" id="countdownText">
+                        Redirecting in
+                        <span id="countdown">3</span>
+                        seconds
+                    </div>
+
+                    <!-- Fallback Redirect Button -->
+                    <button
+                        id="redirectBtn"
+                        class="glass-button py-4 px-8 text-white font-semibold hover:shadow-xl"
+                        onclick="manualRedirect()"
+                    >
+                        Continue Manually
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <script src="src/js/global.js"></script>
+        <script>
+            // Redirect configuration
+            let countdownTime = 3;
+            let redirectCompleted = false;
+            const countdownElement = document.getElementById('countdown');
+            const statusElement = document.getElementById('statusText');
+            const redirectBtn = document.getElementById('redirectBtn');
+
+            // Function to perform redirect
+            function performRedirect() {
+                if (!redirectCompleted) {
+                    redirectCompleted = true;
+                    // Replace with your actual redirect URL
+                    window.location.href = '#dashboard'; // or your target URL
+                    console.log('Auto redirect executed');
+                }
+            }
+
+            // Manual redirect function
+            function manualRedirect() {
+                if (!redirectCompleted) {
+                    redirectCompleted = true;
+                    clearInterval(countdownInterval);
+                    statusElement.textContent = 'Redirecting now...';
+                    // Replace with your actual redirect URL
+                    window.location.href = '#dashboard'; // or your target URL
+                    console.log('Manual redirect executed');
+                }
+            }
+
+            // Update status messages during countdown
+            function updateStatus(timeLeft) {
+                switch (timeLeft) {
+                    case 3:
+                        statusElement.textContent = 'Preparing redirect...';
+                        break;
+                    case 2:
+                        statusElement.textContent = 'Verifying destination...';
+                        break;
+                    case 1:
+                        statusElement.textContent = 'Almost ready...';
+                        break;
+                    case 0:
+                        statusElement.textContent = 'Redirecting now...';
+                        break;
+                }
+            }
+
+            // Countdown timer
+            const countdownInterval = setInterval(() => {
+                countdownElement.textContent = countdownTime;
+                updateStatus(countdownTime);
+
+                if (countdownTime <= 0) {
+                    clearInterval(countdownInterval);
+                    performRedirect();
+                    return;
+                }
+
+                countdownTime--;
+            }, 1000);
+
+            // Show manual redirect button after 2 seconds
+            setTimeout(() => {
+                if (!redirectCompleted) {
+                    redirectBtn.classList.add('show');
+                }
+            }, 2000);
+
+            // Initialize first status
+            updateStatus(countdownTime);
+
+            // Simulate potential redirect failure and show button
+            // In real implementation, you might detect actual redirect failures
+            setTimeout(() => {
+                if (!redirectCompleted) {
+                    document.getElementById('countdownText').innerHTML =
+                        'Taking longer than expected? <br>You can continue manually below';
+                    statusElement.textContent = 'Redirect available';
+                }
+            }, 4000);
+        </script>
+    </body>
+</html>
