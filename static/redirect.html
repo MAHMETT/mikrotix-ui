@@ -73,7 +73,7 @@ $(if http-status == 302)Hotspot redirect$(endif) $(if http-header ==
                 if (!redirectCompleted) {
                     redirectCompleted = true;
                     // Replace with your actual redirect URL
-                    window.location.href = '#dashboard'; // or your target URL
+                    // window.location.href = '$(link-redirect)'; // or your target URL
                     console.log('Auto redirect executed');
                 }
             }
@@ -85,7 +85,7 @@ $(if http-status == 302)Hotspot redirect$(endif) $(if http-header ==
                     clearInterval(countdownInterval);
                     statusElement.textContent = 'Redirecting now...';
                     // Replace with your actual redirect URL
-                    window.location.href = '#dashboard'; // or your target URL
+                    window.location.href = '$(link-redirect)'; // or your target URL
                     console.log('Manual redirect executed');
                 }
             }
