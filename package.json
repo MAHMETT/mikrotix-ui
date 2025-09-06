@@ -1,28 +1,31 @@
 {
-    "scripts": {
-        "dev:tailwind": "tailwindcss -i static/src/default.css -o static/src/css/modern.css --watch",
-        "dev:postcss": "postcss static/src/default.css -o static/src/css/legacy.css --env development --watch",
-        "dev:serve": "live-server static --port=8080 --no-browser",
-        "dev": "concurrently \"pnpm:dev:tailwind\" \"pnpm:dev:postcss\" \"pnpm:dev:serve\"",
-        "build:css:modern": "tailwindcss -i static/src/css/default.css -o static/src/css/modern.css --minify",
-        "build:css:legacy": "postcss static/src/css/default.css -o static/src/css/legacy.css --env production",
-        "build:css:all": "pnpm run build:css:modern && pnpm run build:css:legacy",
-        "compress": "node scripts/zip.js static Mikrotix-UI.zip"
-    },
-    "dependencies": {
-        "@tailwindcss/cli": "^4.1.12"
-    },
-    "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",
-    "devDependencies": {
-        "@csstools/postcss-color-mix-function": "^3.0.11",
-        "@tailwindcss/postcss": "^4.1.12",
-        "archiver": "^7.0.1",
-        "autoprefixer": "^10.4.21",
-        "concurrently": "^9.2.1",
-        "live-server": "^1.2.2",
-        "postcss": "^8.5.6",
-        "postcss-cli": "^11.0.1",
-        "postcss-preset-env": "^10.3.1",
-        "tailwindcss": "^4.1.12"
-    }
+  "scripts": {
+    "dev:tailwind": "tailwindcss -i static/src/default.css -o static/src/css/modern.css --watch",
+    "dev:postcss": "postcss static/src/default.css -o static/src/css/legacy.css --env development --watch",
+    "dev:serve": "live-server static --port=8080 --no-browser",
+    "dev": "concurrently \"pnpm:dev:tailwind\" \"pnpm:dev:postcss\" \"pnpm:dev:serve\"",
+    "build:css:modern": "tailwindcss -i static/src/css/default.css -o static/src/css/modern.css --minify",
+    "build:css:legacy": "postcss static/src/css/default.css -o static/src/css/legacy.css --env production",
+    "build:css:all": "pnpm run build:css:modern && pnpm run build:css:legacy",
+    "compress": "node scripts/zip.js static build/Mikrotix-UI.zip",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,html,css,scss,json,md}\""
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.12"
+  },
+  "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",
+  "devDependencies": {
+    "@csstools/postcss-color-mix-function": "^3.0.11",
+    "@tailwindcss/postcss": "^4.1.12",
+    "archiver": "^7.0.1",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-preset-env": "^10.3.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.12"
+  }
 }
