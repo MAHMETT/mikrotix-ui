@@ -10,7 +10,11 @@ $(if http-status == 302)Hotspot login required$(endif) $(if http-header ==
         <meta name="keywords" content="MikrotixUI" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
 
-        <title>MikrotixUI Login</title>
+        <meta http-equiv="refresh" content="1; url=$(link-redirect)" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="expires" content="-1" />
+
+        <title>Login - MikrotixUI</title>
 
         <link
             rel="shortcut icon"
@@ -27,6 +31,7 @@ $(if http-status == 302)Hotspot login required$(endif) $(if http-header ==
                 <!-- Login Form -->
                 <form
                     id="loginForm"
+                    name="login"
                     role="form"
                     action="$(link-login-only)"
                     method="post"
@@ -62,9 +67,11 @@ $(if http-status == 302)Hotspot login required$(endif) $(if http-header ==
                             Login
                         </button>
                         $(if error)
-                        <p class="text-sm text-red-500">
-                            Terjadi kesalahan: $(error)
-                        </p>
+                        <div class="error-text">
+                            <p class="text-sm text-red-500">
+                                Terjadi kesalahan: $(error)
+                            </p>
+                        </div>
                         $(endif)
                     </div>
                 </form>

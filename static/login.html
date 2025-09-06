@@ -8,7 +8,7 @@
         <meta name="keywords" content="MikrotixUI" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
 
-        <title>MikrotixUI Login</title>
+        <title>Login - MikrotixUI</title>
 
         <link
             rel="shortcut icon"
@@ -32,7 +32,6 @@
                 </form>
                 <script type="text/javascript" src="src/js/md5.js"></script>
                 <script type="text/javascript">
-                    <!--
                     function doLogin() {
                         document.sendin.username.value =
                             document.login.username.value;
@@ -44,16 +43,19 @@
                         document.sendin.submit();
                         return false;
                     }
-                    //-->
                 </script>
                 $(endif)
 
                 <!-- Login Form -->
                 <form
                     id="loginForm"
+                    name="login"
                     role="form"
                     action="$(link-login-only)"
                     method="post"
+                    $(if chap-id)
+                    onSubmit="return doLogin()"
+                    $(endif)
                 >
                     <input type="hidden" name="dst" value="$(link-orig)" />
                     <input type="hidden" name="popup" value="true" />
@@ -86,9 +88,11 @@
                             Login
                         </button>
                         $(if error)
-                        <p class="text-sm text-red-500">
-                            Terjadi kesalahan: $(error)
-                        </p>
+                        <div class="error-text">
+                            <p class="text-sm text-red-500">
+                                Terjadi kesalahan: $(error)
+                            </p>
+                        </div>
                         $(endif)
                     </div>
                 </form>
