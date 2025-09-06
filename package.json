@@ -7,7 +7,7 @@
         "build:css:modern": "tailwindcss -i static/src/css/default.css -o static/src/css/modern.css --minify",
         "build:css:legacy": "postcss static/src/css/default.css -o static/src/css/legacy.css --env production",
         "build:css:all": "pnpm run build:css:modern && pnpm run build:css:legacy",
-        "compress": "node scripts/zip.js static MikrotixUI.zip"
+        "compress": "node scripts/zip.js static Mikrotix-UI.zip"
     },
     "dependencies": {
         "@tailwindcss/cli": "^4.1.12"

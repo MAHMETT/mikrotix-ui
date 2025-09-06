@@ -117,7 +117,7 @@
         </script>
 
         $(if chap-id)
-        <script type="text/javascript" src="src/js/md5.js"></script>
+        <script type="text/javascript" src="md5.js"></script>
         <script type="text/javascript">
             $('#loginForm').submit(function () {
                 var password = $('#inputPassword');
@@ -127,16 +127,5 @@
             });
         </script>
         $(endif)
-        <script>
-            $('#menu-toggle').click(function (e) {
-                e.preventDefault();
-                $('#wrapper').toggleClass('toggled');
-            });
-        </script>
-        <script type="text/javascript">
-            <!--
-            document.login.username.focus();
-            //-->
-        </script>
     </body>
 </html>

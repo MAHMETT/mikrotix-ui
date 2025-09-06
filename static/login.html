@@ -19,33 +19,19 @@
         <link rel="stylesheet" href="src/css/global.css" />
     </head>
     <body class="min-h-screen flex items-center justify-center p-6">
+        <!-- Chap Form (Hidden) -->
+        $(if chap-id)
+        <form name="sendin" action="$(link-login-only)" method="post">
+            <input type="hidden" name="username" />
+            <input type="hidden" name="password" />
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+        </form>
+        $(endif)
+
         <div id="app" class="glass-card p-8 w-full max-w-md fade-in shimmer">
             <!-- Main Section -->
             <main id="main-content" class="space-y-6 mb-8">
-                <!-- Chap -->
-                $(if chap-id)
-                <form name="sendin" action="$(link-login-only)" method="post">
-                    <input type="hidden" name="username" />
-                    <input type="hidden" name="password" />
-                    <input type="hidden" name="dst" value="$(link-orig)" />
-                    <input type="hidden" name="popup" value="true" />
-                </form>
-                <script type="text/javascript" src="src/js/md5.js"></script>
-                <script type="text/javascript">
-                    function doLogin() {
-                        document.sendin.username.value =
-                            document.login.username.value;
-                        document.sendin.password.value = hexMD5(
-                            '$(chap-id)' +
-                                document.login.password.value +
-                                '$(chap-challenge)',
-                        );
-                        document.sendin.submit();
-                        return false;
-                    }
-                </script>
-                $(endif)
-
                 <!-- Login Form -->
                 <form
                     id="loginForm"
@@ -53,8 +39,8 @@
                     role="form"
                     action="$(link-login-only)"
                     method="post"
-                    $(if chap-id)
-                    onSubmit="return doLogin()"
+                    $(if
+                    chap-id)onSubmit="return doLogin()"
                     $(endif)
                 >
                     <input type="hidden" name="dst" value="$(link-orig)" />
@@ -64,7 +50,8 @@
                             <input
                                 id="inputUser"
                                 type="text"
-                                placeholder="Username or Email"
+                                name="username"
+                                placeholder="Username"
                                 class="glass-input w-full px-4 py-4 text-white placeholder-white/60 focus:ring-0 focus:outline-none"
                                 autofocus
                                 required
@@ -75,6 +62,7 @@
                             <input
                                 id="inputPassword"
                                 type="password"
+                                name="password"
                                 placeholder="Password"
                                 class="glass-input w-full px-4 py-4 text-white placeholder-white/60 focus:ring-0 focus:outline-none"
                                 required
@@ -99,21 +87,27 @@
             </main>
         </div>
 
-        $(if chap-id)
-        <script type="text/javascript" src="src/js/md5.js"></script>
-        <script type="text/javascript">
-            $('#loginForm').submit(function () {
-                var password = $('#inputPassword');
-                password.val(
-                    hexMD5('$(chap-id)' + password.val() + '$(chap-challenge)'),
-                );
-            });
-        </script>
-        $(endif)
-
-        <script src="src/js/jquery/jquery.appear.js"></script>
+        <!-- Load jQuery first -->
         <script src="src/js/jquery/jquery-3.2.1.min.js"></script>
         <script src="src/js/jquery/jquery-migrate-3.0.0.min.js"></script>
+        <script src="src/js/jquery/jquery.appear.js"></script>
         <script src="src/js/global.js"></script>
+
+        <!-- MD5 and CHAP Authentication (only once) -->
+        $(if chap-id)
+        <script type="text/javascript" src="md5.js"></script>
+        <script type="text/javascript">
+            function doLogin() {
+                document.sendin.username.value = document.login.username.value;
+                document.sendin.password.value = hexMD5(
+                    '$(chap-id)' +
+                        document.login.password.value +
+                        '$(chap-challenge)',
+                );
+                document.sendin.submit();
+                return false;
+            }
+        </script>
+        $(endif)
     </body>
 </html>

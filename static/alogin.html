@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="refresh" content="5; url=$(link-redirect)" />
         <meta http-equiv="pragma" content="no-cache" />
         <meta http-equiv="expires" content="-1" />
@@ -17,8 +18,18 @@
         />
         <link rel="stylesheet" href="src/css/modern.css" />
         <link rel="stylesheet" href="src/css/global.css" />
+
+        <script language="JavaScript">
+            function startClock() {
+                $(if popup == 'true')
+                open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290');
+            $(endif)}
+        </script>
     </head>
-    <body class="min-h-screen flex items-center justify-center p-6">
+    <body
+        class="min-h-screen flex items-center justify-center p-6"
+        onLoad="startClock()"
+    >
         <div id="app" class="glass-card p-8 w-full max-w-md fade-in shimmer">
             <!-- Main Section -->
             <main id="main-content" class="text-center mb-8">
@@ -48,9 +59,9 @@
             </main>
         </div>
 
-        <script src="src/js/jquery/jquery.appear.js"></script>
         <script src="src/js/jquery/jquery-3.2.1.min.js"></script>
         <script src="src/js/jquery/jquery-migrate-3.0.0.min.js"></script>
+        <script src="src/js/jquery/jquery.appear.js"></script>
         <script src="src/js/successLogin.js"></script>
         <script src="src/js/global.js"></script>
     </body>
