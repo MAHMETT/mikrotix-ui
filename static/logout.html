@@ -1,28 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="MikrotixUI" />
-        <meta name="keywords" content="MikrotixUI" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge"
+        />
+        <meta
+            name="description"
+            content="MikrotixUI"
+        />
+        <meta
+            name="keywords"
+            content="MikrotixUI"
+        />
+        <meta
+            name="apple-mobile-web-app-capable"
+            content="yes"
+        />
+        <meta
+            name="mobile-web-app-capable"
+            content="yes"
+        />
 
-        <title>Logout - MikrotixUI</title>
+        <title>Logout</title>
 
         <link
             rel="shortcut icon"
             type="image/x-icon"
             href="assets/favicon.ico"
         />
-        <link rel="stylesheet" href="src/css/modern.css" />
-        <link rel="stylesheet" href="src/css/global.css" />
+        <link
+            rel="stylesheet"
+            href="src/css/modern.css"
+        />
+        <link
+            rel="stylesheet"
+            href="src/css/global.css"
+        />
     </head>
     <body class="min-h-screen flex items-center justify-center p-6">
-        <div id="app" class="glass-card p-8 w-full max-w-2xl fade-in shimmer">
+        <div
+            id="app"
+            class="glass-card p-8 w-full max-w-2xl fade-in shimmer"
+        >
             <!-- Main Section -->
-            <main id="main-content" class="mb-8">
+            <main
+                id="main-content"
+                class="mb-8"
+            >
                 <!-- Status Table Card -->
                 <div class="glass-table-card mb-6">
                     <table class="glass-table">
@@ -101,15 +132,24 @@
             </main>
         </div>
 
-        <script src="src/js/global.js"></script>
+        <!-- Load jQuery first -->
+        <script src="src/js/jquery/jquery-3.7.1.min.js"></script>
+        <script src="src/js/jquery/jquery-migrate-3.5.0.min.js"></script>
+        <script
+            type="module"
+            src="src/js/global.js"
+        ></script>
 
         $(if chap-id)
-        <script type="text/javascript" src="md5.js"></script>
+        <script
+            type="text/javascript"
+            src="md5.js"
+        ></script>
         <script type="text/javascript">
             $('#loginForm').submit(function () {
                 var password = $('#inputPassword');
                 password.val(
-                    hexMD5('$(chap-id)' + password.val() + '$(chap-challenge)'),
+                    hexMD5('$(chap-id)' + password.val() + '$(chap-challenge)')
                 );
             });
         </script>

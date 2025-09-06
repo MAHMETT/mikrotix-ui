@@ -1,29 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
         <meta
             http-equiv="Content-Type"
             content="text/html; charset=iso-8859-1"
         />
-        <meta http-equiv="pragma" content="no-cache" />
-        <meta http-equiv="expires" content="-1" />
+        <meta
+            http-equiv="pragma"
+            content="no-cache"
+        />
+        <meta
+            http-equiv="expires"
+            content="-1"
+        />
+        <meta
+            name="mobile-web-app-capable"
+            content="yes"
+        />
 
-        <title>Error - MikrotixUI</title>
+        <title>Error</title>
 
         <link
             rel="shortcut icon"
             type="image/x-icon"
             href="assets/favicon.ico"
         />
-        <link rel="stylesheet" href="src/css/modern.css" />
-        <link rel="stylesheet" href="src/css/global.css" />
+        <link
+            rel="stylesheet"
+            href="src/css/modern.css"
+        />
+        <link
+            rel="stylesheet"
+            href="src/css/global.css"
+        />
     </head>
     <body class="min-h-screen flex items-center justify-center p-6">
-        <div id="app" class="glass-card p-8 w-full max-w-2xl fade-in shimmer">
+        <div
+            id="app"
+            class="glass-card p-8 w-full max-w-2xl fade-in shimmer"
+        >
             <!-- Main Section -->
-            <main id="main-content" class="mb-8">
+            <main
+                id="main-content"
+                class="mb-8"
+            >
                 <!-- Error Card -->
                 <div class="error-card mb-6">
                     <!-- Sticky Error Header -->
@@ -64,7 +89,10 @@
                     </div>
 
                     <!-- Error Content -->
-                    <div class="error-content" id="errorContent">
+                    <div
+                        class="error-content"
+                        id="errorContent"
+                    >
                         <div class="error-text">
                             <h3 class="text-red-300 font-semibold mb-2">
                                 Hotspot ERROR
@@ -88,7 +116,13 @@
                 </div>
             </main>
         </div>
+        <!-- Load jQuery first -->
+        <script src="src/js/jquery/jquery-3.7.1.min.js"></script>
+        <script src="src/js/jquery/jquery-migrate-3.5.0.min.js"></script>
         <script src="src/js/error.js"></script>
-        <script src="src/js/global.js"></script>
+        <script
+            type="module"
+            src="src/js/global.js"
+        ></script>
     </body>
 </html>

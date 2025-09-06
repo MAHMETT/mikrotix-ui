@@ -1,37 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="MikrotixUI" />
-        <meta name="keywords" content="MikrotixUI" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge"
+        />
+        <meta
+            name="description"
+            content="MikrotixUI"
+        />
+        <meta
+            name="keywords"
+            content="MikrotixUI"
+        />
+        <meta
+            name="apple-mobile-web-app-capable"
+            content="yes"
+        />
+        <meta
+            name="mobile-web-app-capable"
+            content="yes"
+        />
 
-        <title>Login - MikrotixUI</title>
+        <title>Login</title>
 
         <link
             rel="shortcut icon"
             type="image/x-icon"
             href="assets/favicon.ico"
         />
-        <link rel="stylesheet" href="src/css/modern.css" />
-        <link rel="stylesheet" href="src/css/global.css" />
+        <link
+            rel="stylesheet"
+            href="src/css/modern.css"
+        />
+        <link
+            rel="stylesheet"
+            href="src/css/global.css"
+        />
     </head>
     <body class="min-h-screen flex items-center justify-center p-6">
         <!-- Chap Form (Hidden) -->
         $(if chap-id)
-        <form name="sendin" action="$(link-login-only)" method="post">
-            <input type="hidden" name="username" />
-            <input type="hidden" name="password" />
-            <input type="hidden" name="dst" value="$(link-orig)" />
-            <input type="hidden" name="popup" value="true" />
+        <form
+            name="sendin"
+            action="$(link-login-only)"
+            method="post"
+        >
+            <input
+                type="hidden"
+                name="username"
+            />
+            <input
+                type="hidden"
+                name="password"
+            />
+            <input
+                type="hidden"
+                name="dst"
+                value="$(link-orig)"
+            />
+            <input
+                type="hidden"
+                name="popup"
+                value="true"
+            />
         </form>
         $(endif)
 
-        <div id="app" class="glass-card p-8 w-full max-w-md fade-in shimmer">
+        <div
+            id="app"
+            class="glass-card p-8 w-full max-w-md fade-in shimmer"
+        >
             <!-- Main Section -->
-            <main id="main-content" class="space-y-6 mb-8">
+            <main
+                id="main-content"
+                class="space-y-6 mb-8"
+            >
                 <!-- Login Form -->
                 <form
                     id="loginForm"
@@ -43,8 +92,16 @@
                     chap-id)onSubmit="return doLogin()"
                     $(endif)
                 >
-                    <input type="hidden" name="dst" value="$(link-orig)" />
-                    <input type="hidden" name="popup" value="true" />
+                    <input
+                        type="hidden"
+                        name="dst"
+                        value="$(link-orig)"
+                    />
+                    <input
+                        type="hidden"
+                        name="popup"
+                        value="true"
+                    />
                     <div class="flex w-full flex-col gap-4">
                         <div>
                             <input
@@ -88,21 +145,26 @@
         </div>
 
         <!-- Load jQuery first -->
-        <script src="src/js/jquery/jquery-3.2.1.min.js"></script>
-        <script src="src/js/jquery/jquery-migrate-3.0.0.min.js"></script>
-        <script src="src/js/jquery/jquery.appear.js"></script>
-        <script src="src/js/global.js"></script>
+        <script src="src/js/jquery/jquery-3.7.1.min.js"></script>
+        <script src="src/js/jquery/jquery-migrate-3.5.0.min.js"></script>
+        <script
+            type="module"
+            src="src/js/global.js"
+        ></script>
 
         <!-- MD5 and CHAP Authentication (only once) -->
         $(if chap-id)
-        <script type="text/javascript" src="md5.js"></script>
+        <script
+            type="text/javascript"
+            src="md5.js"
+        ></script>
         <script type="text/javascript">
             function doLogin() {
                 document.sendin.username.value = document.login.username.value;
                 document.sendin.password.value = hexMD5(
                     '$(chap-id)' +
                         document.login.password.value +
-                        '$(chap-challenge)',
+                        '$(chap-challenge)'
                 );
                 document.sendin.submit();
                 return false;
