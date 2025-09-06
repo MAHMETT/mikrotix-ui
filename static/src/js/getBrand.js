@@ -1,7 +1,7 @@
 import { Config } from '../../config.js';
 
 export function injectBrand() {
-    const brand = Config.Brand || 'Brand';
+    const brand = Config.Brand || 'MikrotixUI';
     const current = document.title;
 
     if (!current) {

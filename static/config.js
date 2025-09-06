@@ -1,5 +1,5 @@
 export const Config = {
-    Brand: 'MHA',
+    Brand: 'MikrotixUI',
 };
 
 export const Component = {
