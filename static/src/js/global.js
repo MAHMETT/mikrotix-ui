@@ -6,5 +6,7 @@ import { injectBrand } from './getBrand.js';
     document.addEventListener('DOMContentLoaded', () => {
         injectShell('app');
         injectBrand();
+
+        document.oncontextmenu = () => false;
     });
 })();
