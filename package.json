@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "dev:tailwind": "tailwindcss -i static/src/default.css -o static/src/css/modern.css --watch",
-    "dev:postcss": "postcss static/src/default.css -o static/src/css/legacy.css --env development --watch",
+    "dev:tailwind": "tailwindcss -i static/src/css/default.css -o static/src/css/modern.css --watch",
+    "dev:postcss": "postcss static/src/css/default.css -o static/src/css/legacy.css --env development --watch",
     "dev:serve": "live-server static --port=8080 --no-browser",
     "dev": "concurrently \"pnpm:dev:tailwind\" \"pnpm:dev:postcss\" \"pnpm:dev:serve\"",
     "build:css:modern": "tailwindcss -i static/src/css/default.css -o static/src/css/modern.css --minify",
     "build:css:legacy": "postcss static/src/css/default.css -o static/src/css/legacy.css --env production",
-    "build:css:all": "pnpm run build:css:modern && pnpm run build:css:legacy",
+    "build": "pnpm run build:css:modern && pnpm run build:css:legacy",
     "compress": "node scripts/zip.js static build/Mikrotix-UI.zip",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,html,css,scss,json,md}\""
   },
