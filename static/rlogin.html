@@ -6,131 +6,18 @@ $(if http-header == "Location")$(link-redirect)$(endif)
 <html lang="en">
     <head>
         <title>Redirect to Login</title>
+        <meta
+            http-equiv="refresh"
+            content="0; url=$(link-redirect)"
+        />
+        <meta
+            http-equiv="pragma"
+            content="no-cache"
+        />
+        <meta
+            http-equiv="expires"
+            content="-1"
+        />
     </head>
-    <body class="min-h-screen flex items-center justify-center p-6">
-        <!-- Chap Form (Hidden) -->
-        $(if chap-id)
-        <form
-            name="sendin"
-            action="$(link-login-only)"
-            method="post"
-        >
-            <input
-                type="hidden"
-                name="username"
-            />
-            <input
-                type="hidden"
-                name="password"
-            />
-            <input
-                type="hidden"
-                name="dst"
-                value="$(link-orig)"
-            />
-            <input
-                type="hidden"
-                name="popup"
-                value="true"
-            />
-        </form>
-        $(endif)
-
-        <div
-            id="app"
-            class="glass-card p-8 w-full max-w-md fade-in shimmer"
-        >
-            <!-- Main Section -->
-            <main
-                id="main-content"
-                class="space-y-6 mb-8"
-            >
-                <!-- Login Form -->
-                <form
-                    id="loginForm"
-                    name="login"
-                    role="form"
-                    action="$(link-login-only)"
-                    method="post"
-                    $(if
-                    chap-id)onSubmit="return doLogin()"
-                    $(endif)
-                >
-                    <input
-                        type="hidden"
-                        name="dst"
-                        value="$(link-orig)"
-                    />
-                    <input
-                        type="hidden"
-                        name="popup"
-                        value="true"
-                    />
-                    <div class="flex w-full flex-col gap-4">
-                        <div>
-                            <input
-                                id="inputUser"
-                                type="text"
-                                name="username"
-                                placeholder="Username"
-                                class="glass-input w-full px-4 py-4 text-white placeholder-white/60 focus:ring-0 focus:outline-none"
-                                autofocus
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <input
-                                id="inputPassword"
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                class="glass-input w-full px-4 py-4 text-white placeholder-white/60 focus:ring-0 focus:outline-none"
-                                required
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="glass-button w-full py-4 px-6 text-white font-semibold hover:shadow-xl"
-                        >
-                            Login
-                        </button>
-                        $(if error)
-                        <div class="error-text">
-                            <p class="text-sm text-red-500">
-                                Terjadi kesalahan: $(error)
-                            </p>
-                        </div>
-                        $(endif)
-                    </div>
-                </form>
-            </main>
-        </div>
-
-        <script
-            type="module"
-            src="src/js/global.js"
-        ></script>
-
-        <!-- MD5 and CHAP Authentication (only once) -->
-        $(if chap-id)
-        <script
-            type="text/javascript"
-            src="md5.js"
-        ></script>
-        <script type="text/javascript">
-            function doLogin() {
-                document.sendin.username.value = document.login.username.value;
-                document.sendin.password.value = hexMD5(
-                    '$(chap-id)' +
-                        document.login.password.value +
-                        '$(chap-challenge)'
-                );
-                document.sendin.submit();
-                return false;
-            }
-        </script>
-        $(endif)
-    </body>
+    <body></body>
 </html>
