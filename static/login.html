@@ -1,47 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
-        <meta
-            http-equiv="X-UA-Compatible"
-            content="IE=edge"
-        />
-        <meta
-            name="description"
-            content="MikrotixUI"
-        />
-        <meta
-            name="keywords"
-            content="MikrotixUI"
-        />
-        <meta
-            name="apple-mobile-web-app-capable"
-            content="yes"
-        />
-        <meta
-            name="mobile-web-app-capable"
-            content="yes"
-        />
-
         <title>Login</title>
-
-        <link
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="assets/favicon.ico"
-        />
-        <link
-            rel="stylesheet"
-            href="src/css/modern.css"
-        />
-        <link
-            rel="stylesheet"
-            href="src/css/global.css"
-        />
     </head>
     <body class="min-h-screen flex items-center justify-center p-6">
         <!-- Chap Form (Hidden) -->
@@ -82,15 +42,14 @@
                 class="space-y-6 mb-8"
             >
                 <!-- Login Form -->
+                <!-- prettier-ignore -->
                 <form
                     id="loginForm"
                     name="login"
                     role="form"
                     action="$(link-login-only)"
                     method="post"
-                    $(if
-                    chap-id)onSubmit="return doLogin()"
-                    $(endif)
+                    $(if chap-id)onSubmit="return doLogin()" $(endif)
                 >
                     <input
                         type="hidden"
@@ -144,9 +103,6 @@
             </main>
         </div>
 
-        <!-- Load jQuery first -->
-        <script src="src/js/jquery/jquery-3.7.1.min.js"></script>
-        <script src="src/js/jquery/jquery-migrate-3.5.0.min.js"></script>
         <script
             type="module"
             src="src/js/global.js"
@@ -154,6 +110,7 @@
 
         <!-- MD5 and CHAP Authentication (only once) -->
         $(if chap-id)
+
         <script
             type="text/javascript"
             src="md5.js"

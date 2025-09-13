@@ -1,28 +1,6 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
-        <meta
-            name="description"
-            content="MikrotixUI"
-        />
-        <meta
-            name="keywords"
-            content="MikrotixUI"
-        />
-        <meta
-            name="apple-mobile-web-app-capable"
-            content="yes"
-        />
-        <meta
-            name="mobile-web-app-capable"
-            content="yes"
-        />
-
         <title>Status</title>
 
         $(if refresh-timeout)
@@ -31,20 +9,6 @@
             content="$(refresh-timeout-secs)"
         />
         $(endif)
-
-        <link
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="assets/favicon.ico"
-        />
-        <link
-            rel="stylesheet"
-            href="src/css/modern.css"
-        />
-        <link
-            rel="stylesheet"
-            href="src/css/global.css"
-        />
     </head>
     <body class="min-h-screen flex items-center justify-center p-6">
         <div
@@ -72,56 +36,79 @@
                                 <td>MAC Address</td>
                                 <td>$(mac)</td>
                             </tr>
+                            <!-- prettier-ignore -->
                             $(if session-time-left)
                             <tr>
                                 <td>Connected / left</td>
                                 <td>$(uptime) / $(session-time-left)</td>
                             </tr>
+                            <!-- prettier-ignore -->
                             $(else)
                             <tr>
                                 <td>Connected</td>
                                 <td>$(uptime)</td>
                             </tr>
+                            <!-- prettier-ignore -->
                             $(endif)
                             <tr>
                                 <td>Download / Upload</td>
                                 <td>$(bytes-out-nice) / $(bytes-in-nice)</td>
                             </tr>
+                            <!-- prettier-ignore -->
                             $(if limit-bytes-total)
                             <tr>
                                 <td>Sisa Kuota</td>
                                 <td>
-                                    $(if limit-bytes-total)
-                                    <script language="javascript">
-                                        result = (
-                                            $(limit - bytes - total) / 1000000
-                                        ).toFixed(2);
-                                        document.write(result);
+                                    <script>
+                                        var limit = parseInt(
+                                            '$(limit-bytes-total)'
+                                        );
+                                        if (!isNaN(limit) && limit > 0) {
+                                            var remaining = (
+                                                limit / 1000000
+                                            ).toFixed(2);
+                                            document.write(remaining + ' MB');
+                                        } else {
+                                            document.write('Unlimited');
+                                        }
                                     </script>
-                                    MiB $(endif) $(if limit-bytes-total ==
-                                    '')Unlimited$(endif)
                                 </td>
                             </tr>
+                            <!-- prettier-ignore -->
                             $(else)
+                            <!-- prettier-ignore -->
+                            $(if limit-bytes-out)
                             <tr>
                                 <td>Sisa Kuota</td>
                                 <td>
-                                    $(if limit-bytes-out)
-                                    <script language="javascript">
-                                        result = (
-                                            $(limit - bytes - out) / 1000000
-                                        ).toFixed(2);
-                                        document.write(result);
+                                    <script>
+                                        var limit =
+                                            parseInt('$(limit-bytes-out)');
+                                        var used = parseInt('$(bytes-out)');
+
+                                        if (!isNaN(limit) && limit > 0) {
+                                            var remaining = (
+                                                (limit - used) /
+                                                1000000
+                                            ).toFixed(2);
+                                            document.write(
+                                                remaistartning + ' MB'
+                                            );
+                                        } else {
+                                            document.write('Unlimited');
+                                        }
                                     </script>
-                                    MiB $(endif) $(if limit-bytes-out ==
-                                    '')Unlimited$(endif)
                                 </td>
                             </tr>
-                            $(endif) $(if refresh-timeout)
+                            <!-- prettier-ignore -->
+                            $(endif)
+                            <!-- prettier-ignore -->
+                            $(if refresh-timeout)
                             <tr>
                                 <td>Status refresh</td>
                                 <td>$(refresh-timeout)</td>
                             </tr>
+                            <!-- prettier-ignore -->
                             $(endif)
                         </tbody>
                     </table>
@@ -130,7 +117,7 @@
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
                     <button
-                        class="glass-button flex-1 py-4 px-6 text-white font-semibold hover:shadow-xl"
+                        class="glass-button flex-1 py-4 px-6 text-white font-semBold hover:shadow-xl"
                         onclick="logout()"
                     >
                         Logout
@@ -139,9 +126,6 @@
             </main>
         </div>
 
-        <!-- Load jQuery first -->
-        <script src="src/js/jquery/jquery-3.7.1.min.js"></script>
-        <script src="src/js/jquery/jquery-migrate-3.5.0.min.js"></script>
         <script
             type="module"
             src="src/js/global.js"
@@ -153,20 +137,5 @@
                 }
             }
         </script>
-
-        $(if chap-id)
-        <script
-            type="text/javascript"
-            src="md5.js"
-        ></script>
-        <script type="text/javascript">
-            $('#loginForm').submit(function () {
-                var password = $('#inputPassword');
-                password.val(
-                    hexMD5('$(chap-id)' + password.val() + '$(chap-challenge)')
-                );
-            });
-        </script>
-        $(endif)
     </body>
 </html>

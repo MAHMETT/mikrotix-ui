@@ -37,7 +37,6 @@ function fallbackCopy(text, button) {
         document.execCommand('copy');
         showCopySuccess(button);
     } catch (err) {
-        console.error('Failed to copy error message:', err);
         showCopyError(button);
     }
 

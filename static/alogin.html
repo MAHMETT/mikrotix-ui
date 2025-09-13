@@ -1,55 +1,11 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
-
-        <meta
-            http-equiv="X-UA-Compatible"
-            content="IE=edge"
-        />
         <meta
             http-equiv="refresh"
             content="5; url=$(link-redirect)"
         />
-        <meta
-            http-equiv="pragma"
-            content="no-cache"
-        />
-        <meta
-            http-equiv="expires"
-            content="-1"
-        />
-        <meta
-            name="mobile-web-app-capable"
-            content="yes"
-        />
-
         <title>Login Success</title>
-
-        <link
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="assets/favicon.ico"
-        />
-        <link
-            rel="stylesheet"
-            href="src/css/modern.css"
-        />
-        <link
-            rel="stylesheet"
-            href="src/css/global.css"
-        />
-
-        <script language="JavaScript">
-            function startClock() {
-                $(if popup == 'true')
-                open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290');
-            $(endif)}
-        </script>
     </head>
     <body
         class="min-h-screen flex items-center justify-center p-6"
@@ -65,7 +21,19 @@
                 class="text-center mb-8"
             >
                 <!-- Success Checkmark -->
-                <div class="success-checkmark">✓</div>
+                <div class="success-checkmark">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="48"
+                        height="48"
+                        fill="white"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M20.285 6.709a1 1 0 0 1 0 1.414l-10.01 10.01a1 1 0 0 1-1.414 0L3.707 12.57a1 1 0 0 1 1.414-1.414l4.83 4.829 9.303-9.303a1 1 0 0 1 1.414 0z"
+                        />
+                    </svg>
+                </div>
 
                 <!-- Success Message -->
                 <h2 class="text-xl font-semibold text-white mb-2">
@@ -74,13 +42,13 @@
 
                 <!-- Redirect Button -->
                 <div class="redirect-button-container">
-                    <button
+                    <a
+                        href="$(link-redirect)"
                         id="redirectBtn"
                         class="glass-button py-4 px-8 text-white font-semibold hover:shadow-xl"
-                        onclick="redirectToDashboard()"
                     >
                         Redirect Manually
-                    </button>
+                    </a>
                     <div class="countdown">
                         Otomatis redirect dalam
                         <span id="countdown">5</span>
@@ -90,8 +58,6 @@
             </main>
         </div>
 
-        <script src="src/js/jquery/jquery-3.7.1.min.js"></script>
-        <script src="src/js/jquery/jquery-migrate-3.5.0.min.js"></script>
         <script src="src/js/successLogin.js"></script>
         <script
             type="module"
