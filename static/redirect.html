@@ -5,6 +5,10 @@ $(if http-header == "Location")$(link-redirect)$(endif)
 <!doctype html>
 <html lang="en">
     <head>
+        <meta
+            http-equiv="refresh"
+            content="5; url=$(link-redirect)"
+        />
         <title>Redirecting</title>
     </head>
     <body class="min-h-screen flex items-center justify-center p-6">
@@ -42,7 +46,7 @@ $(if http-header == "Location")$(link-redirect)$(endif)
                         id="countdownText"
                     >
                         Redirecting in
-                        <span id="countdown">3</span>
+                        <span id="countdown">5</span>
                         seconds
                     </div>
 
@@ -65,7 +69,7 @@ $(if http-header == "Location")$(link-redirect)$(endif)
         ></script>
         <script>
             // Redirect configuration
-            let countdownTime = 3;
+            let countdownTime = 5;
             let redirectCompleted = false;
             const countdownElement = document.getElementById('countdown');
             const statusElement = document.getElementById('statusText');
