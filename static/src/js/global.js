@@ -49,21 +49,6 @@ class UIController {
             return this.#cache.get(cacheKey);
         }
 
-        // const template = this.#createTemplate`
-        //     <header role="banner" class="text-center mb-8" aria-label="Site header">
-        //         <div class="flex items-center justify-center mb-4 gap-3">
-        //             <div class="logo">
-        //                 <img src="${FileConfig.LogoUrl}" alt="${GeneralConfig.Brand} Logo" loading="eager" decoding="async" />
-        //             </div>
-        //             <div class="text-left">
-        //                 <h1 class="text-2xl font-bold text-white">
-        //                     ${GeneralConfig.Brand}
-        //                 </h1>
-        //             </div>
-        //         </div>
-        //     </header>
-        // `;
-
         const template = this.#createTemplate`
             <header role="banner" class="text-center mb-8" aria-label="Site header">
                 <div class="flex items-center justify-center mb-4 gap-3">
@@ -150,12 +135,6 @@ class UIController {
         const linkConfigs = [
             { rel: 'icon', type: 'image/webp', href: FileConfig.LogoUrl },
             { rel: 'stylesheet', href: 'src/css/global.css' },
-            // {
-            //     rel: 'preload',
-            //     as: 'image',
-            //     href: FileConfig.LogoUrl,
-            //     type: 'image/webp',
-            // },
         ];
 
         // Batch create meta tags
